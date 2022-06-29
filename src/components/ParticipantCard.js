@@ -1,48 +1,27 @@
-import {useState, useEffect} from 'react';
 import styled from 'styled-components';
 
-export default function App() {
-  const [participantData, setParticipantData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetch(
-      'https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/project_greenlight/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson'
-    )
-      .then(response => {
-        if (!response.ok) {
-          throw Error('We are sorry! Web-API is currently offline.');
-        }
-
-        return response.json();
-      })
-      .then(data => {
-        setParticipantData(data.features);
-        setLoading(false);
-        setError(null);
-      })
-      .catch(err => {
-        setLoading(false);
-        setError(err.message);
-      });
-  }, []);
-
+export default function ParticipantCard({
+  error,
+  loading,
+  participantData,
+  name,
+  business_type,
+  address,
+  live_date,
+  precinct,
+}) {
   return (
-    <Card>
+    <Card role="list">
       {error && <ErrorMessage>{error}</ErrorMessage>}
       {loading && <LoadingMessage> Data is Loading...</LoadingMessage>}
-      <section className="Participant__card">
-        {' '}
-        {participantData.map(features => (
-          <ParticipantButton key={features.id}>
-            <h2>{features.properties.business_name}</h2>
-            <span>Business Type: {features.properties.business_type}</span>
-            <span>Address: {features.properties.address}</span>
-            <span>Since: {features.properties.live_date}</span>
-            <span>Precint: {features.properties.precinct}</span>
-          </ParticipantButton>
-        ))}{' '}
+      <section>
+        <ParticipantSection>
+          <h2>{name}</h2>
+          <span>Business Type: {business_type}</span>
+          <span>Address: {address}</span>
+          <span>Since: {live_date}</span>
+          <span>Precint: {precinct}</span>
+        </ParticipantSection>
       </section>
     </Card>
   );
@@ -58,11 +37,19 @@ const ErrorMessage = styled.p`
   padding: 1.3rem;
 `;
 
-const LoadingMessage = styled.div``;
+const LoadingMessage = styled.p`
+  color: red;
+  background: black;
+  border: solid 2px lightgrey;
+  position: center;
+  text-align: center;
+  margin: 1rem;
+  padding: 1.3rem;
+`;
 
 const Card = styled.section``;
 
-const ParticipantButton = styled.button`
+const ParticipantSection = styled.section`
   display: flex;
   flex-direction: column;
   width: 100%;
