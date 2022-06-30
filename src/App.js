@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 
-import ParticipantCard from './components/ParticipantCard';
+import Header from './components/Header/Header';
+import ParticipantCard from './components/Participant/ParticipantCard';
 
 export default function App() {
   const [participantData, setParticipantData] = useState([]);
@@ -31,7 +32,7 @@ export default function App() {
 
   return (
     <main className="App">
-      <h1>Camera Surveillance</h1>
+      <Header />
       {error && <div>{error}</div>}
       {loading && <div> Data is Loading...</div>}
       {participantData.map(features => (

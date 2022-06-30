@@ -19,9 +19,12 @@
     "test": "npm run test:unit"
   },
   "dependencies": {
+    "deck.gl": "^8.7.12",
+    "mapbox-gl": "^2.9.1",
     "mongoose": "^6.4.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "react-map-gl": "^7.0.16",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4"
   },
