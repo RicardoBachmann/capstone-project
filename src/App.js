@@ -9,7 +9,7 @@ export default function App() {
 
   useEffect(() => {
     fetch(
-      'https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/project_greenlight/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojso'
+      'https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/project_greenlight/FeatureServer/0/query?outFields=*&where=1%3D1&f=geojson'
     )
       .then(response => {
         if (!response.ok) {
@@ -32,6 +32,8 @@ export default function App() {
   return (
     <main className="App">
       <h1>Camera Surveillance</h1>
+      {error && <div>{error}</div>}
+      {loading && <div> Data is Loading...</div>}
       {participantData.map(features => (
         <ParticipantCard
           key={features.id}
@@ -45,7 +47,6 @@ export default function App() {
           participantData={participantData}
         />
       ))}
-      ;
     </main>
   );
 }
