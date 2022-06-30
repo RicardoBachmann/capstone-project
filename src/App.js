@@ -42,9 +42,6 @@ export default function App() {
           address={features.properties.address}
           live_date={features.properties.live_date}
           precinct={features.properties.precinct}
-          error={error}
-          loading={loading}
-          participantData={participantData}
         />
       ))}
     </main>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function ParticipantCard({error, loading, name, business_type, address, live_date, precinct}) {
+export default function ParticipantCard({name, business_type, address, live_date, precinct}) {
   return (
     <Card role="list">
       <section>
