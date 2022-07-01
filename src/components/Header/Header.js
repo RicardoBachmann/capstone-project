@@ -9,16 +9,16 @@ export default function Header() {
 }
 
 const StyledHeader = styled.section`
-  width: 100%;
-  background-color: black;
-  height: 90px;
   position: fixed;
+  width: 100%;
+  height: 80px;
+  background-color: black;
+  z-index: 2;
 
   h1 {
     font: inherit;
     font-weight: 300;
     color: white;
     text-align: center;
-    position: top;
   }
 `;
