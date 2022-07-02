@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export default function ParticipantCard({name, business_type, address, live_date, precinct}) {
   return (
-    <ParticipantContainer>
+    <ParticipantContainer role="list">
       <span>{name}</span>
       <span>Business Type: {business_type}</span>
       <span>Address: {address}</span>

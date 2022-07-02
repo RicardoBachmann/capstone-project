@@ -54,16 +54,17 @@ export default function App() {
   );
 }
 
-const Infobox = styled.div`
-  display: grid;
-  bottom: 0;
-  position: absolute;
-  height: 35%;
-  padding: 0.6rem;
-  overflow-y: auto;
-  gap: 9px;
-`;
-
 const Main = styled.main`
   height: 100vh;
+`;
+
+const Infobox = styled.div`
+  display: grid;
+  position: absolute;
+  height: 35%;
+  width: 100%;
+  bottom: 0;
+  padding: 0.6rem;
+  gap: 9px;
+  overflow-y: auto;
 `;
