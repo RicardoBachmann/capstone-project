@@ -1,8 +1,7 @@
 import MapContainer from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-const mapboxAccessToken =
-  'pk.eyJ1IjoiZGV0cm9pdDMxMyIsImEiOiJjbDUxMDVzNTQwMHlnM2RtYTA2cHZkaGs5In0.5E21FmuybbZTLegdNaRXvg';
+const {REACT_APP_MAPBOX_TOKEN} = process.env;
 
 export default function MapView() {
   return (
@@ -14,7 +13,7 @@ export default function MapView() {
       }}
       style={{width: window.innerWidth, height: window.innerHeight, position: 'absolute'}}
       mapStyle="mapbox://styles/mapbox/dark-v9"
-      mapboxAccessToken={mapboxAccessToken}
+      mapboxAccessToken={REACT_APP_MAPBOX_TOKEN}
     />
   );
 }
