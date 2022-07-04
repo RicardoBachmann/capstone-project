@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export default function ParticipantCard({name, business_type, address, live_date, precinct}) {
+export default function ParticipantCard({name, businessType, address, liveDate, precinct}) {
   return (
-    <ParticipantContainer role="list">
+    <ParticipantContainer role="article">
       <span>{name}</span>
-      <span>Business Type: {business_type}</span>
+      <span>Business Type: {businessType}</span>
       <span>Address: {address}</span>
-      <span>Since: {live_date}</span>
+      <span>Since: {liveDate}</span>
       <span>Precint: {precinct}</span>
     </ParticipantContainer>
   );

@@ -8,7 +8,7 @@ export default function Header() {
   );
 }
 
-const StyledHeader = styled.section`
+const StyledHeader = styled.header`
   position: fixed;
   width: 100%;
   height: 80px;

@@ -33,7 +33,7 @@ export default function App() {
   }, []);
 
   return (
-    <Main className="App">
+    <Main>
       <Header />
       <MapLayer />
       {error && <div>{error}</div>}
@@ -43,9 +43,9 @@ export default function App() {
           <ParticipantCard
             key={features.id}
             name={features.properties.business_name}
-            business_type={features.properties.business_type}
+            businessType={features.properties.business_type}
             address={features.properties.address}
-            live_date={features.properties.live_date}
+            liveDate={features.properties.live_date}
             precinct={features.properties.precinct}
           />
         ))}
