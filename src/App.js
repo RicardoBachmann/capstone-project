@@ -1,6 +1,9 @@
 import {useState, useEffect} from 'react';
+import styled from 'styled-components';
 
-import ParticipantCard from './components/ParticipantCard';
+import Header from './components/Header/Header';
+import MapLayer from './components/MapLayer/MapLayer';
+import ParticipantCard from './components/Participant/ParticipantCard';
 
 export default function App() {
   const [participantData, setParticipantData] = useState([]);
@@ -30,20 +33,38 @@ export default function App() {
   }, []);
 
   return (
-    <main className="App">
-      <h1>Camera Surveillance</h1>
+    <Main>
+      <Header />
+      <MapLayer />
       {error && <div>{error}</div>}
       {loading && <div> Data is Loading...</div>}
-      {participantData.map(features => (
-        <ParticipantCard
-          key={features.id}
-          name={features.properties.business_name}
-          business_type={features.properties.business_type}
-          address={features.properties.address}
-          live_date={features.properties.live_date}
-          precinct={features.properties.precinct}
-        />
-      ))}
-    </main>
+      <Infobox>
+        {participantData.map(features => (
+          <ParticipantCard
+            key={features.id}
+            name={features.properties.business_name}
+            businessType={features.properties.business_type}
+            address={features.properties.address}
+            liveDate={features.properties.live_date}
+            precinct={features.properties.precinct}
+          />
+        ))}
+      </Infobox>
+    </Main>
   );
 }
+
+const Main = styled.main`
+  height: 100vh;
+`;
+
+const Infobox = styled.div`
+  display: grid;
+  position: absolute;
+  height: 35%;
+  width: 100%;
+  bottom: 0;
+  padding: 0.6rem;
+  gap: 9px;
+  overflow-y: auto;
+`;
