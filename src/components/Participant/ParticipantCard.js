@@ -25,5 +25,6 @@ const ParticipantContainer = styled.section`
 
   .h1 {
     font: inherit;
+    color: white;
   }
 `;
