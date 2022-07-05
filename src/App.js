@@ -35,7 +35,14 @@ export default function App() {
   return (
     <Main>
       <Header />
-      <MapLayer />
+      {participantData.map(locations => (
+        <MapLayer
+          key={locations.id}
+          latitude={locations.geometry.coordinates[1]}
+          longitude={locations.geometry.coordinates[0]}
+        />
+      ))}
+
       {error && <div>{error}</div>}
       {loading && <div> Data is Loading...</div>}
       <Infobox>
