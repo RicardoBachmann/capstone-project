@@ -1,9 +1,12 @@
 import {useState, useEffect} from 'react';
+import ReactMapGL from 'react-map-gl';
 import styled from 'styled-components';
 
 import Header from './components/Header/Header';
 import MapLayer from './components/MapLayer/MapLayer';
 import ParticipantCard from './components/Participant/ParticipantCard';
+
+const {REACT_APP_MAPBOX_TOKEN} = process.env;
 
 export default function App() {
   const [participantData, setParticipantData] = useState([]);
@@ -35,13 +38,25 @@ export default function App() {
   return (
     <Main>
       <Header />
-      {participantData.map(locations => (
-        <MapLayer
-          key={locations.id}
-          latitude={locations.geometry.coordinates[1]}
-          longitude={locations.geometry.coordinates[0]}
-        />
-      ))}
+      <ReactMapGL
+        initialViewState={{
+          longitude: -83.0475,
+          latitude: 42.3316,
+          zoom: 8,
+        }}
+        style={{width: window.innerWidth, height: window.innerHeight, position: 'absolute'}}
+        mapStyle="mapbox://styles/mapbox/dark-v9"
+        mapboxAccessToken={REACT_APP_MAPBOX_TOKEN}
+      >
+        {participantData.map(locations => (
+          <MapLayer
+            key={locations.id}
+            longitude={locations.geometry.coordinates[0]}
+            latitude={locations.geometry.coordinates[1]}
+            name={locations.properties.business_name}
+          />
+        ))}
+      </ReactMapGL>
 
       {error && <div>{error}</div>}
       {loading && <div> Data is Loading...</div>}
