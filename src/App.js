@@ -45,7 +45,7 @@ export default function App() {
           zoom: 8,
         }}
         style={{width: window.innerWidth, height: window.innerHeight, position: 'absolute'}}
-        mapStyle="mapbox://styles/mapbox/dark-v9"
+        mapStyle="mapbox://styles/detroit313/cl586y46z003l14pei3pj3bzx"
         mapboxAccessToken={REACT_APP_MAPBOX_TOKEN}
       >
         {participantData.map(locations => (
@@ -60,6 +60,7 @@ export default function App() {
 
       {error && <div>{error}</div>}
       {loading && <div> Data is Loading...</div>}
+
       <Infobox>
         {participantData.map(features => (
           <ParticipantCard
