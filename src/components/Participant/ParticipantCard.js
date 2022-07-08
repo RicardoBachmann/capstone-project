@@ -3,17 +3,16 @@ import styled from 'styled-components';
 export default function ParticipantCard({name, businessType, address, liveDate, precinct}) {
   return (
     <ParticipantContainer role="article">
-      <span>{name}</span>
-      <span>Business Type: {businessType}</span>
-      <span>Address: {address}</span>
-      <span>Since: {liveDate}</span>
-      <span>Precint: {precinct}</span>
+      <h2>{name}</h2>
+      <p>Business Type: {businessType}</p>
+      <p>Address: {address}</p>
+      <p>Since: {liveDate}</p>
+      <p>Precint: {precinct}</p>
     </ParticipantContainer>
   );
 }
 
-const ParticipantContainer = styled.section`
-  position: relative;
+const ParticipantContainer = styled.article`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -23,8 +22,7 @@ const ParticipantContainer = styled.section`
   color: white;
   text-align: center;
 
-  .h1 {
-    font: inherit;
+  .h2 {
     color: white;
   }
 `;

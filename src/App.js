@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import ReactMapGL from 'react-map-gl';
 import styled from 'styled-components';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 import Header from './components/Header/Header';
 import MapLayer from './components/MapLayer/MapLayer';
@@ -36,7 +37,7 @@ export default function App() {
   }, []);
 
   return (
-    <Main>
+    <>
       <Header />
       <ReactMapGL
         initialViewState={{
@@ -44,18 +45,20 @@ export default function App() {
           latitude: 42.3316,
           zoom: 8,
         }}
-        style={{width: window.innerWidth, height: window.innerHeight, position: 'absolute'}}
-        mapStyle="mapbox://styles/detroit313/cl586y46z003l14pei3pj3bzx"
+        style={{width: '100vw', height: '100vw'}}
         mapboxAccessToken={REACT_APP_MAPBOX_TOKEN}
+        mapStyle="mapbox://styles/detroit313/cl586y46z003l14pei3pj3bzx"
       >
-        {participantData.map(locations => (
-          <MapLayer
-            key={locations.id}
-            longitude={locations.geometry.coordinates[0]}
-            latitude={locations.geometry.coordinates[1]}
-            name={locations.properties.business_name}
-          />
-        ))}
+        {participantData.map(locations => {
+          return (
+            <MapLayer
+              name={locations.properties.business_name}
+              key={locations.id}
+              longitude={locations.geometry.coordinates[0]}
+              latitude={locations.geometry.coordinates[1]}
+            ></MapLayer>
+          );
+        })}
       </ReactMapGL>
 
       {error && <div>{error}</div>}
@@ -73,21 +76,18 @@ export default function App() {
           />
         ))}
       </Infobox>
-    </Main>
+    </>
   );
 }
 
-const Main = styled.main`
-  height: 100vh;
-`;
-
 const Infobox = styled.div`
   display: grid;
-  position: absolute;
+  position: fixed;
   height: 35%;
   width: 100%;
   bottom: 0;
   padding: 0.6rem;
   gap: 9px;
   overflow-y: auto;
+  z-index: 2;
 `;
