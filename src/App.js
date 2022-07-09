@@ -45,7 +45,7 @@ export default function App() {
           latitude: 42.3316,
           zoom: 8,
         }}
-        style={{width: '100vw', height: '100vw'}}
+        style={{width: '100vw', height: '100vh'}}
         mapboxAccessToken={REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/detroit313/cl586y46z003l14pei3pj3bzx"
       >
@@ -83,7 +83,7 @@ export default function App() {
 const Infobox = styled.div`
   display: grid;
   position: fixed;
-  height: 35%;
+  height: 30%;
   width: 100%;
   bottom: 0;
   padding: 0.6rem;

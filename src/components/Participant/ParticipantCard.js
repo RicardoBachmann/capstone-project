@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default function ParticipantCard({name, businessType, address, liveDate, precinct}) {
   return (
     <ParticipantContainer role="article">
-      <h2>{name}</h2>
+      <h3>{name}</h3>
       <p>Business Type: {businessType}</p>
       <p>Address: {address}</p>
       <p>Since: {liveDate}</p>
@@ -13,16 +13,12 @@ export default function ParticipantCard({name, businessType, address, liveDate, 
 }
 
 const ParticipantContainer = styled.article`
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  font-size: 0.9rem;
-  background-color: black;
-  border: solid 2px lightgrey;
+  font-size: 0.7rem;
+  line-height: 0.3rem;
   color: white;
-  text-align: center;
-
-  .h2 {
-    color: white;
-  }
+  background-color: black;
+  border: solid 1px lightgrey;
+  text-align: left;
+  padding-left: 0.6rem;
 `;
