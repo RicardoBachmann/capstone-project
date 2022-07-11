@@ -1,19 +1,14 @@
-import MapContainer from 'react-map-gl';
+import {Marker} from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-const {REACT_APP_MAPBOX_TOKEN} = process.env;
-
-export default function MapView() {
+export default function MapLayer({latitude, longitude, name}) {
   return (
-    <MapContainer
-      initialViewState={{
-        longitude: -83.0475,
-        latitude: 42.3316,
-        zoom: 8,
-      }}
-      style={{width: window.innerWidth, height: window.innerHeight, position: 'absolute'}}
-      mapStyle="mapbox://styles/mapbox/dark-v9"
-      mapboxAccessToken={REACT_APP_MAPBOX_TOKEN}
-    />
+    <Marker longitude={longitude} latitude={latitude}>
+      <svg width="116" height="116" viewBox="0 0 116 116" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="68.6066" y1="68.6066" x2="47.3934" y2="47.3934" stroke="#3AD713" />
+        <line x1="68.6066" y1="47.3934" x2="47.3934" y2="68.6066" stroke="#3AD713" />
+        <circle cx="58" cy="58" r="27.5" stroke="#3AD713" />
+      </svg>
+    </Marker>
   );
 }
