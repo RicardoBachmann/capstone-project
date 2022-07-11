@@ -80,7 +80,7 @@ export default function App() {
   );
 }
 
-const Infobox = styled.div`
+const Infobox = styled.section`
   display: grid;
   position: fixed;
   height: 30%;
