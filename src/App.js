@@ -25,7 +25,7 @@ export default function App() {
   const mapRef = useRef();
 
   const handleFlyTo = useCallback(coordinates => {
-    mapRef.current?.flyTo({center: coordinates, duration: 3000, curve: 1, zoom: 18});
+    mapRef.current?.flyTo({center: coordinates, duration: 5000, curve: 2, zoom: 18});
   }, []);
 
   useEffect(() => {
@@ -100,7 +100,7 @@ const Infobox = styled.section`
   width: 100%;
   bottom: 0;
   padding: 0.6rem;
-  gap: 9px;
+  gap: 3px;
   overflow-y: auto;
   z-index: 2;
 `;

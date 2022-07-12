@@ -3,7 +3,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 export default function MarkerLayer({latitude, longitude}) {
   return (
-    <Marker longitude={longitude} latitude={latitude} >
+    <Marker longitude={longitude} latitude={latitude}>
       <svg
         width="116"
         height="116"
