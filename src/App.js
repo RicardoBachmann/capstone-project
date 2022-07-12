@@ -1,5 +1,4 @@
-import {FlyToInterpolator} from 'deck.gl';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback, useRef} from 'react';
 import ReactMapGL from 'react-map-gl';
 import styled from 'styled-components';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -11,28 +10,23 @@ import ParticipantCard from './components/Participant/ParticipantCard';
 const {REACT_APP_MAPBOX_TOKEN} = process.env;
 
 export default function App() {
-  //Default map view
-  const [ViewState, setViewState] = useState({
+  const initialViewState = {
     longitude: -83.0475,
     latitude: 42.3316,
     zoom: 8,
-  });
-
-  const handleChangeViewState = ({ViewState}) => setViewState(ViewState);
-
-  //Switch between participant locations
-  const handleFlyTo = destination => {
-    setViewState({
-      ...ViewState,
-      ...destination,
-      transitionDuration: 2000,
-      transitionInterpolator: new FlyToInterpolator(),
-    });
+    pitch: 0,
+    bearing: 0,
   };
 
   const [participantData, setParticipantData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const mapRef = useRef();
+
+  const handleFlyTo = useCallback(coordinates => {
+    mapRef.current?.flyTo({center: coordinates, duration: 3000, zoom: 18});
+  }, []);
 
   useEffect(() => {
     fetch(
@@ -60,8 +54,8 @@ export default function App() {
     <>
       <Header />
       <ReactMapGL
-        initialViewState={ViewState}
-        onViewStateChange={handleChangeViewState}
+        ref={mapRef}
+        initialViewState={initialViewState}
         style={{width: '100vw', height: '100vh'}}
         mapboxAccessToken={REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/detroit313/cl586y46z003l14pei3pj3bzx"
@@ -91,6 +85,7 @@ export default function App() {
             address={features.properties.address}
             liveDate={features.properties.live_date}
             precinct={features.properties.precinct}
+            handleFlyTo={() => handleFlyTo(features.geometry.coordinates)}
           />
         ))}
       </Infobox>

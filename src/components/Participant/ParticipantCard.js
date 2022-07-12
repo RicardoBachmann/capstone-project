@@ -1,16 +1,13 @@
-
 import styled from 'styled-components';
 
-export default function ParticipantCard({name, businessType, address, liveDate, precinct}) {
+export default function ParticipantCard({name, businessType, address, liveDate, precinct, handleFlyTo}) {
   return (
-    <ParticipantButton>
-      <button key={} onClick={handleFlyTo}>
-        <h2>{name}</h2>
-        <p>Business Type: {businessType}</p>
-        <p>Address: {address}</p>
-        <p>Since: {liveDate}</p>
-        <p>Precint: {precinct}</p>
-      </button>
+    <ParticipantButton onClick={handleFlyTo}>
+      <h2>{name}</h2>
+      <p>Business Type: {businessType}</p>
+      <p>Address: {address}</p>
+      <p>Since: {liveDate}</p>
+      <p>Precint: {precinct}</p>
     </ParticipantButton>
   );
 }
