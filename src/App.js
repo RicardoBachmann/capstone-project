@@ -25,7 +25,7 @@ export default function App() {
   const mapRef = useRef();
 
   const handleFlyTo = useCallback(coordinates => {
-    mapRef.current?.flyTo({center: coordinates, duration: 3000, zoom: 18});
+    mapRef.current?.flyTo({center: coordinates, duration: 3000, curve: 1, zoom: 18});
   }, []);
 
   useEffect(() => {

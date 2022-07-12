@@ -21,4 +21,10 @@ const ParticipantButton = styled.button`
   border: solid 1px lightgrey;
   text-align: left;
   padding-left: 0.6rem;
+
+  &:focus {
+    background-color: black;
+    color: lime;
+    border: solid 1px red;
+  }
 `;
