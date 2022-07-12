@@ -1,15 +1,35 @@
+import {FlyToInterpolator} from 'deck.gl';
 import {useState, useEffect} from 'react';
 import ReactMapGL from 'react-map-gl';
 import styled from 'styled-components';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 import Header from './components/Header/Header';
-import MapLayer from './components/MapLayer/MapLayer';
+import MarkerLayer from './components/MarkerLayer/MarkerLayer';
 import ParticipantCard from './components/Participant/ParticipantCard';
 
 const {REACT_APP_MAPBOX_TOKEN} = process.env;
 
 export default function App() {
+  //Default map view
+  const [ViewState, setViewState] = useState({
+    longitude: -83.0475,
+    latitude: 42.3316,
+    zoom: 8,
+  });
+
+  const handleChangeViewState = ({ViewState}) => setViewState(ViewState);
+
+  //Switch between participant locations
+  const handleFlyTo = destination => {
+    setViewState({
+      ...ViewState,
+      ...destination,
+      transitionDuration: 2000,
+      transitionInterpolator: new FlyToInterpolator(),
+    });
+  };
+
   const [participantData, setParticipantData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -40,31 +60,29 @@ export default function App() {
     <>
       <Header />
       <ReactMapGL
-        initialViewState={{
-          longitude: -83.0475,
-          latitude: 42.3316,
-          zoom: 8,
-        }}
+        initialViewState={ViewState}
+        onViewStateChange={handleChangeViewState}
         style={{width: '100vw', height: '100vh'}}
         mapboxAccessToken={REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/detroit313/cl586y46z003l14pei3pj3bzx"
       >
         {participantData.map(locations => {
           return (
-            <MapLayer
-              name={locations.properties.business_name}
+            <MarkerLayer
               key={locations.id}
               longitude={locations.geometry.coordinates[0]}
               latitude={locations.geometry.coordinates[1]}
-            ></MapLayer>
+            ></MarkerLayer>
           );
         })}
       </ReactMapGL>
 
-      {error && <div>{error}</div>}
-      {loading && <div> Data is Loading...</div>}
-
       <Infobox>
+        <ApiRequest>
+          {error && <div>{error}</div>}
+          {loading && <div> Data is Loading...</div>}
+        </ApiRequest>
+
         {participantData.map(features => (
           <ParticipantCard
             key={features.id}
@@ -90,4 +108,13 @@ const Infobox = styled.section`
   gap: 9px;
   overflow-y: auto;
   z-index: 2;
+`;
+
+const ApiRequest = styled.div`
+  width: 100%;
+  font-size: 1.3rem;
+  color: white;
+  background-color: black;
+  border: solid 1px white;
+  text-align: center;
 `;
