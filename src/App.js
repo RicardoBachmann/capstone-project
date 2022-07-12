@@ -60,12 +60,12 @@ export default function App() {
         mapboxAccessToken={REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/detroit313/cl586y46z003l14pei3pj3bzx"
       >
-        {participantData.map(locations => {
+        {participantData.map(location => {
           return (
             <MarkerLayer
-              key={locations.id}
-              longitude={locations.geometry.coordinates[0]}
-              latitude={locations.geometry.coordinates[1]}
+              key={location.id}
+              longitude={location.geometry.coordinates[0]}
+              latitude={location.geometry.coordinates[1]}
             ></MarkerLayer>
           );
         })}
@@ -73,19 +73,19 @@ export default function App() {
 
       <Infobox>
         <ApiRequest>
-          {error && <div>{error}</div>}
-          {loading && <div> Data is Loading...</div>}
+          {error && <span>{error}</span>}
+          {loading && <span> Data is Loading...</span>}
         </ApiRequest>
 
-        {participantData.map(features => (
+        {participantData.map(participant => (
           <ParticipantCard
-            key={features.id}
-            name={features.properties.business_name}
-            businessType={features.properties.business_type}
-            address={features.properties.address}
-            liveDate={features.properties.live_date}
-            precinct={features.properties.precinct}
-            handleFlyTo={() => handleFlyTo(features.geometry.coordinates)}
+            key={participant.id}
+            name={participant.properties.business_name}
+            businessType={participant.properties.business_type}
+            address={participant.properties.address}
+            liveDate={participant.properties.live_date}
+            precinct={participant.properties.precinct}
+            handleFlyTo={() => handleFlyTo(participant.geometry.coordinates)}
           />
         ))}
       </Infobox>

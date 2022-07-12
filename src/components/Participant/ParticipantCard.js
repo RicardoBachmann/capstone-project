@@ -3,13 +3,11 @@ import styled from 'styled-components';
 export default function ParticipantCard({name, businessType, address, liveDate, precinct, handleFlyTo}) {
   return (
     <ParticipantButton onClick={handleFlyTo}>
-      <dl>
-        <h2>{name}</h2>
-        <dt>Business Type: {businessType}</dt>
-        <dt>Address: {address}</dt>
-        <dt>Since: {liveDate}</dt>
-        <dt>Precint: {precinct}</dt>
-      </dl>
+      <h2>{name}</h2>
+      <p>Business Type: {businessType}</p>
+      <p>Address: {address}</p>
+      <p>Since: {liveDate}</p>
+      <p>Precint: {precinct}</p>
     </ParticipantButton>
   );
 }
@@ -17,6 +15,7 @@ export default function ParticipantCard({name, businessType, address, liveDate, 
 const ParticipantButton = styled.button`
   width: 100%;
   font-size: 0.7rem;
+  line-height: 0.3rem;
   color: white;
   background-color: black;
   border: solid 1px lightgrey;
@@ -30,7 +29,7 @@ const ParticipantButton = styled.button`
   }
 
   h2 {
-    font-size: 0.9rem;
+    font-size: 1.0rem;
     font-weight: 400;
   }
 `;
