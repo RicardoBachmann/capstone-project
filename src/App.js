@@ -9,15 +9,15 @@ import ParticipantCard from './components/Participant/ParticipantCard';
 
 const {REACT_APP_MAPBOX_TOKEN} = process.env;
 
-export default function App() {
-  const initialViewState = {
-    longitude: -83.0475,
-    latitude: 42.3316,
-    zoom: 8,
-    pitch: 0,
-    bearing: 0,
-  };
+const initialViewState = {
+  longitude: -83.0475,
+  latitude: 42.3316,
+  zoom: 8,
+  pitch: 0,
+  bearing: 0,
+};
 
+export default function App() {
   const [participantData, setParticipantData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -107,9 +107,11 @@ const Infobox = styled.section`
 
 const ApiRequest = styled.div`
   width: 100%;
-  font-size: 1.3rem;
-  color: white;
+  height: 23%;
+  font-size: 1rem;
+
+  color: red;
   background-color: black;
-  border: solid 1px white;
+  border: solid 1px red;
   text-align: center;
 `;
