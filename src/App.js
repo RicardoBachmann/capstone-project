@@ -109,7 +109,6 @@ const ApiRequest = styled.div`
   width: 100%;
   height: 23%;
   font-size: 1rem;
-
   color: red;
   background-color: black;
   border: solid 1px red;
