@@ -21,6 +21,7 @@ export default function App() {
   const [participantData, setParticipantData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [query, setQuery] = useState('');
 
   const mapRef = useRef();
 
@@ -50,9 +51,20 @@ export default function App() {
       });
   }, []);
 
+  const data = Object.values(participantData);
+
+  const searchParameters = Object.keys(Object.assign({}, ...data));
+
+  function search(participantData) {
+    return participantData.filter(participant =>
+      searchParameters.some(parameter => participant[parameter], toString().toLowerCase().includes(query))
+    );
+  }
+
   return (
     <>
       <Header />
+
       <ReactMapGL
         ref={mapRef}
         initialViewState={initialViewState}
@@ -77,7 +89,18 @@ export default function App() {
           {loading && <span> Data is Loading...</span>}
         </ApiRequest>
 
-        {participantData.map(participant => (
+        <SearchContainer>
+          <label htmlFor="search-form">
+            <input
+              type="search"
+              name="search-form"
+              placeholder="Search for..."
+              onChange={e => setQuery(e.target.value)}
+            />
+          </label>
+        </SearchContainer>
+
+        {search(participantData).map(participant => (
           <ParticipantCard
             key={participant.id}
             name={participant.properties.business_name}
@@ -113,4 +136,8 @@ const ApiRequest = styled.div`
   background-color: black;
   border: solid 1px red;
   text-align: center;
+`;
+
+const SearchContainer = styled.div`
+  position: fixed;
 `;
