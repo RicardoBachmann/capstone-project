@@ -12,7 +12,7 @@ const {REACT_APP_MAPBOX_TOKEN} = process.env;
 const initialViewState = {
   longitude: -83.0475,
   latitude: 42.3316,
-  zoom: 8,
+  zoom: 12,
   pitch: 0,
   bearing: 0,
 };
