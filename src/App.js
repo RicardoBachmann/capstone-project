@@ -21,6 +21,7 @@ export default function App() {
   const [participantData, setParticipantData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
   const [query, setQuery] = useState('');
 
   const mapRef = useRef();
@@ -51,15 +52,15 @@ export default function App() {
       });
   }, []);
 
-  const data = Object.values(participantData);
-
-  const searchParameters = Object.keys(Object.assign({}, ...data));
-
   function search(participantData) {
-    return participantData.filter(participant =>
-      searchParameters.some(parameter => participant[parameter], toString().toLowerCase().includes(query))
-    );
+    return participantData.filter(participant => {
+      const address = participant.properties.address.toLowerCase();
+      const name = participant.properties.business_name?.toLowerCase();
+
+      return address.includes(query) || (name && name.includes(query));
+    });
   }
+  console.log(query);
 
   return (
     <>
