@@ -141,7 +141,7 @@ const SearchInput = styled.input`
   padding: 0.2rem;
   width: 357px;
   border: solid 2px red;
-  color: BLACK;
+  color: black;
   background-color: rgb(255, 255, 255, 0.8);
 `;
 
