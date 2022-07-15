@@ -93,7 +93,7 @@ export default function App() {
               type="search"
               name="search-form"
               placeholder="Search for..."
-              onChange={e => setQuery(e.target.value)}
+              onChange={e => setQuery(e.target.value.toLowerCase())}
             />
           </SearchContainer>
           <ApiRequest>
