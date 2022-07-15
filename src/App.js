@@ -84,35 +84,36 @@ export default function App() {
         })}
       </ReactMapGL>
 
-      <Infobox>
-        <ApiRequest>
-          {error && <span>{error}</span>}
-          {loading && <span> Data is Loading...</span>}
-        </ApiRequest>
-
-        <SearchContainer>
-          <label htmlFor="search-form">
-            <input
+      <ControlPanel>
+        <Infobox>
+          <SearchContainer>
+            <SearchInput
+              label
+              htmlFor="search-form"
               type="search"
               name="search-form"
               placeholder="Search for..."
               onChange={e => setQuery(e.target.value)}
             />
-          </label>
-        </SearchContainer>
+          </SearchContainer>
+          <ApiRequest>
+            {error && <span>{error}</span>}
+            {loading && <span> Data is Loading...</span>}
+          </ApiRequest>
 
-        {search(participantData).map(participant => (
-          <ParticipantCard
-            key={participant.id}
-            name={participant.properties.business_name}
-            businessType={participant.properties.business_type}
-            address={participant.properties.address}
-            liveDate={participant.properties.live_date}
-            precinct={participant.properties.precinct}
-            handleFlyTo={() => handleFlyTo(participant.geometry.coordinates)}
-          />
-        ))}
-      </Infobox>
+          {search(participantData).map(participant => (
+            <ParticipantCard
+              key={participant.id}
+              name={participant.properties.business_name}
+              businessType={participant.properties.business_type}
+              address={participant.properties.address}
+              liveDate={participant.properties.live_date}
+              precinct={participant.properties.precinct}
+              handleFlyTo={() => handleFlyTo(participant.geometry.coordinates)}
+            />
+          ))}
+        </Infobox>
+      </ControlPanel>
     </>
   );
 }
@@ -124,21 +125,30 @@ const Infobox = styled.section`
   width: 100%;
   bottom: 0;
   padding: 0.6rem;
-  gap: 3px;
+  gap: 5px;
   overflow-y: auto;
-  z-index: 2;
-`;
-
-const ApiRequest = styled.div`
-  width: 100%;
-  height: 23%;
-  font-size: 1rem;
-  color: red;
-  background-color: black;
-  border: solid 1px red;
-  text-align: center;
+  z-index: 5;
 `;
 
 const SearchContainer = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+const SearchInput = styled.input`
+  top: 435px;
   position: fixed;
+  padding: 0.2rem;
+  width: 357px;
+  border: solid 2px red;
+  color: BLACK;
+  background-color: rgb(255, 255, 255, 0.8);
+`;
+
+const ControlPanel = styled.section`
+  position: absolute;
+`;
+
+const ApiRequest = styled.div`
+  color: red;
 `;
