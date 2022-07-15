@@ -60,7 +60,6 @@ export default function App() {
       return address.includes(query) || (name && name.includes(query));
     });
   }
-  console.log(query);
 
   return (
     <>
