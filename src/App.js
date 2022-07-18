@@ -78,6 +78,8 @@ export default function App() {
               key={location.id}
               longitude={location.geometry.coordinates[0]}
               latitude={location.geometry.coordinates[1]}
+              handleFlyTo={() => handleFlyTo(location.geometry.coordinates)}
+  
             ></MarkerLayer>
           );
         })}

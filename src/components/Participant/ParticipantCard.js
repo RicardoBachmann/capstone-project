@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 export default function ParticipantCard({name, businessType, address, liveDate, precinct, handleFlyTo}) {
+
+
+
   return (
     <ParticipantContainer>
       <h2>{name}</h2>
