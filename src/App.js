@@ -22,6 +22,8 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [selectedMarkerId, setSelectedMarkerId] = useState(null);
+
   const [query, setQuery] = useState('');
 
   const mapRef = useRef();
@@ -78,8 +80,11 @@ export default function App() {
               key={location.id}
               longitude={location.geometry.coordinates[0]}
               latitude={location.geometry.coordinates[1]}
-              handleFlyTo={() => handleFlyTo(location.geometry.coordinates)}
-  
+              onClick={() => {
+                handleFlyTo(location.geometry.coordinates);
+                setSelectedMarkerId(location.id);
+              }}
+              isSelected={selectedMarkerId === location.id}
             ></MarkerLayer>
           );
         })}

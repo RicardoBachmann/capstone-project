@@ -1,9 +1,6 @@
 import styled from 'styled-components';
 
 export default function ParticipantCard({name, businessType, address, liveDate, precinct, handleFlyTo}) {
-
-
-
   return (
     <ParticipantContainer>
       <h2>{name}</h2>
@@ -29,6 +26,7 @@ const ParticipantContainer = styled.section`
   text-align: left;
 
   button {
+    font-family: 'IBM Plex Mono', monospace;
     background-color: black;
     font-size: 0.8rem;
     color: lime;
@@ -42,6 +40,7 @@ const ParticipantContainer = styled.section`
   }
 
   h2 {
+    font-family: 'IBM Plex Mono', monospace;
     text-align: center;
     font-size: 1rem;
     line-height: 0.1rem;
@@ -49,6 +48,7 @@ const ParticipantContainer = styled.section`
   }
 
   ul {
+    font-family: 'IBM Plex Mono', monospace;
     text-align: center;
     list-style: none;
     margin: 0;
