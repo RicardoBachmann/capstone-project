@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function ParticipantCard({name, businessType, address, liveDate, precinct, handleFlyTo}) {
+export default function ParticipantCard({name, businessType, address, liveDate, precinct, onClick}) {
   return (
     <ParticipantContainer>
       <h2>{name}</h2>
@@ -10,7 +10,7 @@ export default function ParticipantCard({name, businessType, address, liveDate, 
         <li>Since: {liveDate}</li>
         <li>Precint: {precinct}</li>
       </ul>
-      <button onClick={handleFlyTo}>INVESTIGATE</button>
+      <button onClick={onClick}>INVESTIGATE</button>
     </ParticipantContainer>
   );
 }

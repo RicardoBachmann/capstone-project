@@ -115,8 +115,12 @@ export default function App() {
               address={participant.properties.address}
               liveDate={participant.properties.live_date}
               precinct={participant.properties.precinct}
-              handleFlyTo={() => handleFlyTo(participant.geometry.coordinates)}
-            />
+              onClick={() => {
+                handleFlyTo(participant.geometry.coordinates);
+                setSelectedMarkerId(participant.id);
+              }}
+              isSelected={selectedMarkerId === participant.id}
+            ></ParticipantCard>
           ))}
         </Infobox>
       </ControlPanel>
