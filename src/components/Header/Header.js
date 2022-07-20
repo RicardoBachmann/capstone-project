@@ -16,8 +16,10 @@ const StyledHeader = styled.header`
   z-index: 2;
 
   h1 {
-    font: inherit;
-    font-weight: 300;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 400;
     color: white;
     text-align: center;
   }

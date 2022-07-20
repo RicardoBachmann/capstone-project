@@ -22,6 +22,8 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [selectedMarkerId, setSelectedMarkerId] = useState(null);
+
   const [query, setQuery] = useState('');
 
   const mapRef = useRef();
@@ -52,7 +54,7 @@ export default function App() {
       });
   }, []);
 
-  function search(participantData) {
+  function handleSearch(participantData) {
     return participantData.filter(participant => {
       const address = participant.properties.address.toLowerCase();
       const name = participant.properties.business_name?.toLowerCase();
@@ -72,15 +74,28 @@ export default function App() {
         mapboxAccessToken={REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/detroit313/cl586y46z003l14pei3pj3bzx"
       >
-        {participantData.map(location => {
-          return (
-            <MarkerLayer
-              key={location.id}
-              longitude={location.geometry.coordinates[0]}
-              latitude={location.geometry.coordinates[1]}
-            ></MarkerLayer>
-          );
-        })}
+        {participantData
+          .filter(location => {
+            const address = location.properties.address.toLowerCase();
+            const name = location.properties.business_name?.toLowerCase();
+
+            return address.includes(query) || (name && name.includes(query));
+          })
+          .map(location => {
+            return (
+              <MarkerLayer
+                key={location.id}
+                name={location.properties.business_name}
+                longitude={location.geometry.coordinates[0]}
+                latitude={location.geometry.coordinates[1]}
+                onClick={() => {
+                  handleFlyTo(location.geometry.coordinates);
+                  setSelectedMarkerId(location.id);
+                }}
+                isSelected={selectedMarkerId === location.id}
+              ></MarkerLayer>
+            );
+          })}
       </ReactMapGL>
 
       <ControlPanel>
@@ -100,7 +115,7 @@ export default function App() {
             {loading && <span> Data is Loading...</span>}
           </ApiRequest>
 
-          {search(participantData).map(participant => (
+          {handleSearch(participantData).map(participant => (
             <ParticipantCard
               key={participant.id}
               name={participant.properties.business_name}
@@ -108,8 +123,12 @@ export default function App() {
               address={participant.properties.address}
               liveDate={participant.properties.live_date}
               precinct={participant.properties.precinct}
-              handleFlyTo={() => handleFlyTo(participant.geometry.coordinates)}
-            />
+              onClick={() => {
+                handleFlyTo(participant.geometry.coordinates);
+                setSelectedMarkerId(participant.id);
+              }}
+              isSelected={selectedMarkerId === participant.id}
+            ></ParticipantCard>
           ))}
         </Infobox>
       </ControlPanel>
