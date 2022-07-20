@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function ParticipantCard({name, businessType, address, liveDate, precinct, onClick}) {
+export default function ParticipantCard({name, businessType, address, liveDate, precinct, onClick }) {
   return (
     <ParticipantContainer>
       <h2>{name}</h2>

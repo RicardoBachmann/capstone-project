@@ -1,15 +1,10 @@
 import {useRef} from 'react';
 import ReactMapGL from 'react-map-gl';
-
 import 'mapbox-gl/dist/mapbox-gl.css';
-import MarkerLayer from './components/MarkerLayer/MarkerLayer';
 
 export default function MapLayer() {
   const mapRef = useRef();
   const {REACT_APP_MAPBOX_TOKEN} = process.env;
-
-  const handleFlyTo = useCallback(coordinates => {
-    mapRef.current?.flyTo({center: coordinates, duration: 5000, curve: 2, zoom: 18});
 
   const initialViewState = {
     longitude: -83.0475,
@@ -19,7 +14,6 @@ export default function MapLayer() {
     bearing: 0,
   };
 
-
   return (
     <ReactMapGL
       ref={mapRef}
@@ -27,17 +21,6 @@ export default function MapLayer() {
       style={{width: '100vw', height: '100vh'}}
       mapboxAccessToken={REACT_APP_MAPBOX_TOKEN}
       mapStyle="mapbox://styles/detroit313/cl586y46z003l14pei3pj3bzx"
-    >
-      {participantData.map(location => {
-        return (
-          <MarkerLayer
-            key={location.id}
-            longitude={location.geometry.coordinates[0]}
-            latitude={location.geometry.coordinates[1]}
-            handleFlyTo={() => handleFlyTo(location.geometry.coordinates)}
-          ></MarkerLayer>
-        );
-      })}
-    </ReactMapGL>
+    ></ReactMapGL>
   );
 }

@@ -54,7 +54,7 @@ export default function App() {
       });
   }, []);
 
-  function search(participantData) {
+  function handleSearch(participantData) {
     return participantData.filter(participant => {
       const address = participant.properties.address.toLowerCase();
       const name = participant.properties.business_name?.toLowerCase();
@@ -78,6 +78,7 @@ export default function App() {
           return (
             <MarkerLayer
               key={location.id}
+              name={location.properties.business_name}
               longitude={location.geometry.coordinates[0]}
               latitude={location.geometry.coordinates[1]}
               onClick={() => {
@@ -107,7 +108,7 @@ export default function App() {
             {loading && <span> Data is Loading...</span>}
           </ApiRequest>
 
-          {search(participantData).map(participant => (
+          {handleSearch(participantData).map(participant => (
             <ParticipantCard
               key={participant.id}
               name={participant.properties.business_name}
