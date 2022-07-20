@@ -18,6 +18,7 @@ const StyledHeader = styled.header`
   h1 {
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase;
+    font-size: 2rem;
     font-weight: 400;
     color: white;
     text-align: center;
