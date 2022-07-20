@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function ParticipantCard({name, businessType, address, liveDate, precinct, onClick }) {
+export default function ParticipantCard({name, businessType, address, liveDate, precinct, onClick}) {
   return (
     <ParticipantContainer>
       <h2>{name}</h2>
@@ -10,7 +10,7 @@ export default function ParticipantCard({name, businessType, address, liveDate, 
         <li>Since: {liveDate}</li>
         <li>Precint: {precinct}</li>
       </ul>
-      <button onClick={onClick}>INVESTIGATE</button>
+      <button onClick={onClick}>Investigate</button>
     </ParticipantContainer>
   );
 }
@@ -29,6 +29,7 @@ const ParticipantContainer = styled.section`
     font-family: 'IBM Plex Mono', monospace;
     background-color: black;
     font-size: 0.8rem;
+    text-transform: uppercase;
     color: lime;
     border: solid 1px red;
     padding: 0.3rem;

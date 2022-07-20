@@ -74,7 +74,7 @@ export default function App() {
         mapboxAccessToken={REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/detroit313/cl586y46z003l14pei3pj3bzx"
       >
-        {participantData.map(location => {
+        {handleSearch(participantData).map(location => {
           return (
             <MarkerLayer
               key={location.id}

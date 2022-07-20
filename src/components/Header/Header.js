@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export default function Header() {
   return (
     <StyledHeader>
-      <h1>GREEN LIGHT SURVEILLANCE</h1>
+      <h1>Green Light Surveillance</h1>
     </StyledHeader>
   );
 }
@@ -17,6 +17,7 @@ const StyledHeader = styled.header`
 
   h1 {
     font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
     font-weight: 400;
     color: white;
     text-align: center;
