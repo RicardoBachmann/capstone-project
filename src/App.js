@@ -74,21 +74,28 @@ export default function App() {
         mapboxAccessToken={REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/detroit313/cl586y46z003l14pei3pj3bzx"
       >
-        {handleSearch(participantData).map(location => {
-          return (
-            <MarkerLayer
-              key={location.id}
-              name={location.properties.business_name}
-              longitude={location.geometry.coordinates[0]}
-              latitude={location.geometry.coordinates[1]}
-              onClick={() => {
-                handleFlyTo(location.geometry.coordinates);
-                setSelectedMarkerId(location.id);
-              }}
-              isSelected={selectedMarkerId === location.id}
-            ></MarkerLayer>
-          );
-        })}
+        {participantData
+          .filter(location => {
+            const address = location.properties.address.toLowerCase();
+            const name = location.properties.business_name?.toLowerCase();
+
+            return address.includes(query) || (name && name.includes(query));
+          })
+          .map(location => {
+            return (
+              <MarkerLayer
+                key={location.id}
+                name={location.properties.business_name}
+                longitude={location.geometry.coordinates[0]}
+                latitude={location.geometry.coordinates[1]}
+                onClick={() => {
+                  handleFlyTo(location.geometry.coordinates);
+                  setSelectedMarkerId(location.id);
+                }}
+                isSelected={selectedMarkerId === location.id}
+              ></MarkerLayer>
+            );
+          })}
       </ReactMapGL>
 
       <ControlPanel>

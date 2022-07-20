@@ -16,6 +16,7 @@ export default function MarkerLayer({latitude, longitude, onClick, isSelected}) 
         transform="scale (0.8)"
         cursor="crosshair"
         onClick={onClick}
+        clickTolerance="500"
       >
         <line x1="68.6066" y1="68.6066" x2="47.3934" y2="47.3934" stroke={strokeColor} />
         <line x1="68.6066" y1="47.3934" x2="47.3934" y2="68.6066" stroke={strokeColor} />
