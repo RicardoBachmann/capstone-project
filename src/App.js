@@ -13,7 +13,7 @@ const {REACT_APP_MAPBOX_TOKEN} = process.env;
 const initialViewState = {
   longitude: -83.0475,
   latitude: 42.3316,
-  zoom: 9,
+  zoom: 11,
   pitch: 0,
   bearing: 0,
 };
@@ -35,7 +35,7 @@ export default function App() {
 
   const navControlStyle = {
     position: 'relative',
-    top: 450,
+    top: 313,
     left: 0,
     padding: '0.2rem',
   };
@@ -158,7 +158,7 @@ const Infobox = styled.section`
 const TextInput = styled.input`
   font-family: 'IBM Plex Mono', monospace;
   font-size: 1rem;
-  top: 577px;
+  top: 417px;
   position: fixed;
   padding: 0.8rem;
   width: 100%;
