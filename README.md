@@ -6,7 +6,6 @@ This investigate Web-Application deals about the mass surveillance of public spa
 
 ![Green-Light-Surveillance](./public/img/GreenLightSurveillance.png)
 
-
 ## Tech-Stack
 
 - [React](https://beta.reactjs.org)
