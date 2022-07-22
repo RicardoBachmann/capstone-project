@@ -35,7 +35,7 @@ export default function App() {
 
   const navControlStyle = {
     position: 'relative',
-    top: 313,
+    top: 500,
     left: 0,
     padding: '0.2rem',
   };
@@ -158,7 +158,7 @@ const Infobox = styled.section`
 const TextInput = styled.input`
   font-family: 'IBM Plex Mono', monospace;
   font-size: 1rem;
-  top: 417px;
+  top: 599px;
   position: fixed;
   padding: 0.8rem;
   width: 100%;

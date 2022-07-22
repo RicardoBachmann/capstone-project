@@ -4,6 +4,9 @@
 
 This investigate Web-Application deals about the mass surveillance of public space in Detroit. A flashing green Light indicates that this location is being observed by cameras with facial recognition software. The interactive map shows the result of the government forced infrastructure and critically questions the effects for the affected citizens.
 
+![Green-Light-Surveillance](./public/img/GreenLightSurveillance.png)
+
+
 ## Tech-Stack
 
 - [React](https://beta.reactjs.org)
