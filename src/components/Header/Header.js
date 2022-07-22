@@ -11,7 +11,7 @@ export default function Header() {
 const StyledHeader = styled.header`
   position: fixed;
   width: 100%;
-  height: 80px;
+  height: 60px;
   background-color: black;
   z-index: 2;
 
@@ -19,8 +19,10 @@ const StyledHeader = styled.header`
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase;
     font-size: 2rem;
-    font-weight: 400;
+    font-weight: 900;
+    line-height: 0.5;
     color: white;
     text-align: center;
+    top: 50;
   }
 `;
