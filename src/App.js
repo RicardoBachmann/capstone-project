@@ -1,5 +1,6 @@
 import {useState, useEffect, useCallback, useRef} from 'react';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, {NavigationControl} from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import styled from 'styled-components';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
@@ -12,7 +13,7 @@ const {REACT_APP_MAPBOX_TOKEN} = process.env;
 const initialViewState = {
   longitude: -83.0475,
   latitude: 42.3316,
-  zoom: 12,
+  zoom: 11,
   pitch: 0,
   bearing: 0,
 };
@@ -31,6 +32,13 @@ export default function App() {
   const handleFlyTo = useCallback(coordinates => {
     mapRef.current?.flyTo({center: coordinates, duration: 5000, curve: 2, zoom: 18});
   }, []);
+
+  const navControlStyle = {
+    position: 'relative',
+    top: 313,
+    left: 0,
+    padding: '0.2rem',
+  };
 
   useEffect(() => {
     fetch(
@@ -96,42 +104,41 @@ export default function App() {
               ></MarkerLayer>
             );
           })}
+
+        <NavigationControl showCompass={false} style={navControlStyle} />
       </ReactMapGL>
 
-      <ControlPanel>
-        <Infobox>
-          <SearchContainer>
-            <SearchInput
-              label
-              htmlFor="search-form"
-              type="search"
-              name="search-form"
-              placeholder="Search for..."
-              onChange={e => setQuery(e.target.value.toLowerCase())}
-            />
-          </SearchContainer>
-          <ApiRequest>
-            {error && <span>{error}</span>}
-            {loading && <span> Data is Loading...</span>}
-          </ApiRequest>
+      <SearchContainer>
+        <TextInput
+          onChange={e => setQuery(e.target.value.toLowerCase())}
+          htmlFor="search-form"
+          type="search"
+          name="search-form"
+          placeholder="Search for..."
+        />
+      </SearchContainer>
+      <Infobox>
+        <ApiRequest>
+          {error && <span>{error}</span>}
+          {loading && <span> Data is Loading...</span>}
+        </ApiRequest>
 
-          {handleSearch(participantData).map(participant => (
-            <ParticipantCard
-              key={participant.id}
-              name={participant.properties.business_name}
-              businessType={participant.properties.business_type}
-              address={participant.properties.address}
-              liveDate={participant.properties.live_date}
-              precinct={participant.properties.precinct}
-              onClick={() => {
-                handleFlyTo(participant.geometry.coordinates);
-                setSelectedMarkerId(participant.id);
-              }}
-              isSelected={selectedMarkerId === participant.id}
-            ></ParticipantCard>
-          ))}
-        </Infobox>
-      </ControlPanel>
+        {handleSearch(participantData).map(participant => (
+          <ParticipantCard
+            key={participant.id}
+            name={participant.properties.business_name}
+            businessType={participant.properties.business_type}
+            address={participant.properties.address}
+            liveDate={participant.properties.live_date}
+            precinct={participant.properties.precinct}
+            onClick={() => {
+              handleFlyTo(participant.geometry.coordinates);
+              setSelectedMarkerId(participant.id);
+            }}
+            isSelected={selectedMarkerId === participant.id}
+          ></ParticipantCard>
+        ))}
+      </Infobox>
     </>
   );
 }
@@ -148,22 +155,25 @@ const Infobox = styled.section`
   z-index: 5;
 `;
 
-const SearchContainer = styled.div`
-  position: relative;
-  width: 100%;
-`;
-
-const SearchInput = styled.input`
-  top: 435px;
+const TextInput = styled.input`
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1rem;
+  top: 417px;
   position: fixed;
-  padding: 0.2rem;
-  width: 357px;
+  padding: 0.8rem;
+  width: 100%;
   border: solid 2px red;
-  color: black;
-  background-color: rgb(255, 255, 255, 0.8);
+  color: red;
+  background-color: transparent;
+
+  :focus {
+    outline: none;
+    background-color: black;
+    color: lime;
+  }
 `;
 
-const ControlPanel = styled.section`
+const SearchContainer = styled.section`
   position: absolute;
 `;
 
