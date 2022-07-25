@@ -35,9 +35,9 @@ export default function App() {
 
   const navControlStyle = {
     position: 'relative',
-    top: 500,
+    top: 320,
     left: 0,
-    padding: '0.2rem',
+    padding: '0.1rem',
   };
 
   useEffect(() => {
@@ -158,7 +158,7 @@ const Infobox = styled.section`
 const TextInput = styled.input`
   font-family: 'IBM Plex Mono', monospace;
   font-size: 1rem;
-  top: 599px;
+  top: 417px;
   position: fixed;
   padding: 0.8rem;
   width: 100%;
