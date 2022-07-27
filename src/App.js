@@ -35,7 +35,7 @@ export default function App() {
 
   const navControlStyle = {
     position: 'relative',
-    top: 320,
+    top: 321,
     left: 0,
     padding: '0.1rem',
   };
